@@ -39,9 +39,9 @@
       "frameworks": {
         "netcoreapp3.0": {
           "dependencies": {
-            "MySqlConnector": {
+            "MySql.Data": {
               "target": "Package",
-              "version": "[0.61.0, )"
+              "version": "[8.0.19, )"
             }
           },
           "imports": [
