@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using cargoSprint.API.Data;
 using cargoSprint.API.Models;
@@ -12,14 +13,15 @@ namespace cargoSprint.API.Controllers
     {
     
 
-        public DataContext Db { get; }
+                public DataContext Db { get; }
 
         public CustomOrderDataController(DataContext db)
         {
             Db = db;
         }
+
           [HttpGet("{date}")]
-          [Route("api/[controller]/GetOrderAfter")]
+          [Route("api/[controller]/GetOrdersAfter")]
         public async Task<ActionResult> GetOrdersAfter(int date)
         {
 
@@ -34,12 +36,13 @@ namespace cargoSprint.API.Controllers
 
      
 
-        [HttpGet("{startDate}/{endDate}")]
-         [Route("api/[controller]/GetOrderBetween")]
-        public async Task<ActionResult> GetOrdersBetween(int startDate,int endDate)
+         [HttpGet("{startDate}/{endDate}")]
+         [Route("api/[controller]/GetOrdersBetween")]
+        public async Task<IActionResult> GetOrdersBetween(int startDate,int endDate)
         {
              DateTime dtStart = DateTime.ParseExact(startDate.ToString(), "yyyyMMdd", null);
              DateTime dtEnd = DateTime.ParseExact(endDate.ToString(), "yyyyMMdd", null);
+            
               await Db.Connection.OpenAsync();
             var query = new CustomOrdersData(Db);
             var result = await query.GetOrdersBetweenAsync(dtStart,dtEnd);

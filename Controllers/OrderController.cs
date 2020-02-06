@@ -66,19 +66,15 @@ namespace cargoSprint.API.Controllers
             var result = await query.FindOneAsync(id);
             if (result is null)
                 return new NotFoundResult();
-            //result[0].Id =body.Id;
-            // result[0].Name = body.Name;
-            // result[0].Description = body.Description;
-            // result[0].Date = body.Date;
-            // for (int i=0; i<result[0].OrdersD.Count; i++)
-            // {
-            //     result[0].OrdersD[i].IdItem = body.OrdersD[i].IdItem;
-            //     //result[0].OrdersD[i].IdOrder = body.OrdersD[i].IdOrder;
-            //     result[0].OrdersD[i].Quantity = body.OrdersD[i].Quantity;
-            // }
-            
+
             await result[0].UpdateAsync(body,result[0].OrdersD);
-            return new OkObjectResult(body);
+
+               var order = await query.FindOneAsync(id);
+            if (order[0] is null)
+                return new NotFoundResult();
+
+            return new OkObjectResult(order[0]);
+            
         }
 
               // DELETE api/order/5
