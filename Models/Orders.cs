@@ -144,7 +144,7 @@ namespace cargoSprint.API.Models
             cmd.Parameters.Add(new MySqlParameter
             {
                 ParameterName = "@date",
-                DbType = DbType.String,
+                DbType = DbType.DateTime,
                 Value = Date,
             });
 
