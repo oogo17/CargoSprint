@@ -52,3 +52,13 @@
 /Users/omar/Documents/Projects/CargoSprint/cargoSprint.API/bin/Release/netcoreapp3.0/publish/publish/publish/publish/appsettings.json
 /Users/omar/Documents/Projects/CargoSprint/cargoSprint.API/bin/Release/netcoreapp3.0/publish/publish/publish/publish/cargoSprint.API.deps.json
 /Users/omar/Documents/Projects/CargoSprint/cargoSprint.API/bin/Release/netcoreapp3.0/publish/publish/publish/publish/cargoSprint.API.runtimeconfig.json
+/Users/omar/Documents/Projects/CargoSprint/cargoSprint.API/bin/Release/netcoreapp3.0/publish/publish/publish/publish/publish/web.config
+/Users/omar/Documents/Projects/CargoSprint/cargoSprint.API/bin/Release/netcoreapp3.0/publish/publish/publish/publish/publish/appsettings.Development.json
+/Users/omar/Documents/Projects/CargoSprint/cargoSprint.API/bin/Release/netcoreapp3.0/publish/publish/publish/publish/publish/appsettings.json
+/Users/omar/Documents/Projects/CargoSprint/cargoSprint.API/bin/Release/netcoreapp3.0/publish/publish/publish/publish/publish/cargoSprint.API.deps.json
+/Users/omar/Documents/Projects/CargoSprint/cargoSprint.API/bin/Release/netcoreapp3.0/publish/publish/publish/publish/publish/cargoSprint.API.runtimeconfig.json
+/Users/omar/Documents/Projects/CargoSprint/cargoSprint.API/bin/Release/netcoreapp3.0/publish/publish/publish/publish/publish/publish/web.config
+/Users/omar/Documents/Projects/CargoSprint/cargoSprint.API/bin/Release/netcoreapp3.0/publish/publish/publish/publish/publish/publish/appsettings.Development.json
+/Users/omar/Documents/Projects/CargoSprint/cargoSprint.API/bin/Release/netcoreapp3.0/publish/publish/publish/publish/publish/publish/appsettings.json
+/Users/omar/Documents/Projects/CargoSprint/cargoSprint.API/bin/Release/netcoreapp3.0/publish/publish/publish/publish/publish/publish/cargoSprint.API.deps.json
+/Users/omar/Documents/Projects/CargoSprint/cargoSprint.API/bin/Release/netcoreapp3.0/publish/publish/publish/publish/publish/publish/cargoSprint.API.runtimeconfig.json

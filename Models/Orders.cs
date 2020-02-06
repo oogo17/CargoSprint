@@ -30,13 +30,13 @@ namespace cargoSprint.API.Models
 
         }
 
-        public async Task InsertOrdersAsync()
+        public async Task<int> InsertOrdersAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
             cmd.CommandText = @"INSERT INTO `orders` (`name`, `description`,`date`) VALUES (@name, @description, @date);";
             BindParamsOrders(cmd);
             await cmd.ExecuteNonQueryAsync();
-            Id = (int)cmd.LastInsertedId;
+            return Id = (int)cmd.LastInsertedId;
 
 
 

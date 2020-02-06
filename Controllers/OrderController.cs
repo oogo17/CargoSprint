@@ -1,7 +1,11 @@
+
 using System.Threading.Tasks;
 using cargoSprint.API.Data;
 using cargoSprint.API.Models;
 using Microsoft.AspNetCore.Mvc;
+   using System.Net;
+    using System.Net.Http;
+
 
 namespace cargoSprint.API.Controllers
 {
@@ -48,13 +52,36 @@ namespace cargoSprint.API.Controllers
         {
             await Db.Connection.OpenAsync();
             body.Db = Db;
-            await body.InsertOrdersAsync();
+            var itemQuery=new ItemsQuery(Db);
+
+            for(int i=0;i< body.OrdersD.Count;i++)
+            {
+                var itemId=body.OrdersD[i].IdItem;
+                var findItemID=itemQuery.FindOneAsync(itemId);
+               
+                if(findItemID.Result == null)
+                {
+                     var resp = new HttpResponseMessage(System.Net.HttpStatusCode.NotFound)
+        {
+            Content = new StringContent(string.Format("No item with ID = {0}", findItemID)),
+            ReasonPhrase = "Item ID Not Found"
+        };
+        throw new HttpResponseException(resp.ReasonPhrase);
+         
+                }
+            }
+            
+
+            var orderId = await body.InsertOrdersAsync();
            
             await body.InsertOrderDetailAsync(body);
+            
+            var orderQuery = new OrdersQuery(Db);
+            var result=await orderQuery.FindOneAsync(orderId);
 
             
             
-            return new OkObjectResult(body);
+            return new OkObjectResult(result[0]);
         }
 
         // PUT api/order/5
