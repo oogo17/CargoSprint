@@ -27,7 +27,7 @@ namespace cargoSprint.API.Models
     public string Name { get; set; }
     public string Description { get; set; }
 
-    public Items Item { get; set; }
+    // public Items Item { get; set; }
 
     
     

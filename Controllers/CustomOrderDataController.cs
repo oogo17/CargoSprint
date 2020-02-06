@@ -20,7 +20,7 @@ namespace cargoSprint.API.Controllers
         }
           [HttpGet("{date}")]
           [Route("api/[controller]/GetOrderAfter")]
-        public async Task<ActionResult> GetOrderAfter(int date)
+        public async Task<ActionResult> GetOrdersAfter(int date)
         {
 
          DateTime dt = DateTime.ParseExact(date.ToString(), "yyyyMMdd", null);
@@ -36,7 +36,7 @@ namespace cargoSprint.API.Controllers
 
         [HttpGet("{startDate}/{endDate}")]
          [Route("api/[controller]/GetOrderBetween")]
-        public async Task<ActionResult> GetOrderBetween(int startDate,int endDate)
+        public async Task<ActionResult> GetOrdersBetween(int startDate,int endDate)
         {
              DateTime dtStart = DateTime.ParseExact(startDate.ToString(), "yyyyMMdd", null);
              DateTime dtEnd = DateTime.ParseExact(endDate.ToString(), "yyyyMMdd", null);

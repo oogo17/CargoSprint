@@ -78,7 +78,7 @@ namespace cargoSprint.API.Controllers
             // }
             
             await result[0].UpdateAsync(body,result[0].OrdersD);
-            return new OkObjectResult(result);
+            return new OkObjectResult(body);
         }
 
               // DELETE api/order/5
@@ -91,7 +91,7 @@ namespace cargoSprint.API.Controllers
             if (result is null)
                 return new NotFoundResult();
             await result[0].DeleteAsync(result);
-            return new OkObjectResult(result);
+            return new OkObjectResult(result[0]);
         }
     }
 }
