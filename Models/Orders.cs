@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
+using cargoSprint.API.CustomExceptions;
 using cargoSprint.API.Data;
 using MySql.Data.MySqlClient;
 
@@ -88,8 +89,17 @@ namespace cargoSprint.API.Models
                     await cmd.ExecuteNonQueryAsync();
                 }
             }
+             var itemQuery=new ItemsQuery(Db);
+
             for (int i = 0; i < body.OrdersD.Count; i++)
             {
+                var resultItem = await itemQuery.FindOneAsync(body.OrdersD[i].IdItem);
+
+                if(resultItem == null) {
+                    FoundExceptions.NotFoundException(body.OrdersD[i].IdItem);
+                    }
+                        
+
                 if (!result.Exists(x => x.IdItem == body.OrdersD[i].IdItem))
                 {
                     //insert
@@ -100,7 +110,17 @@ namespace cargoSprint.API.Models
                 }
             }
 
+           
 
+
+        }
+
+        public async Task UpdateOrderAsync() {
+             using var cmd_order = Db.Connection.CreateCommand();
+            cmd_order.CommandText = @"UPDATE orders SET name = @name ,description = @description, date = @date   WHERE  id = @id;";
+            BindParamsOrders(cmd_order);
+            BindId(cmd_order);
+            await cmd_order.ExecuteNonQueryAsync();
         }
 
         public async Task DeleteAsync(List<Orders> order)

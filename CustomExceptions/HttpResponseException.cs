@@ -2,12 +2,17 @@ using System;
 using System.Net;
 using System.Runtime.Serialization;
 
-namespace cargoSprint.API.Controllers
+namespace cargoSprint.API.CustomExceptions
 {
     [Serializable]
-    internal class HttpResponseException : Exception
+    public class HttpResponseException : Exception
     {
         private HttpStatusCode notFound;
+
+        public HttpResponseException()
+        {
+            
+        }
 
         public HttpResponseException(System.Net.Http.HttpResponseMessage resp)
         {

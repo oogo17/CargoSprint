@@ -2,10 +2,9 @@
 using System.Threading.Tasks;
 using cargoSprint.API.Data;
 using cargoSprint.API.Models;
+using cargoSprint.API.CustomExceptions;
 using Microsoft.AspNetCore.Mvc;
-   using System.Net;
-    using System.Net.Http;
-
+using System.Net.Http;
 
 namespace cargoSprint.API.Controllers
 {
@@ -53,6 +52,7 @@ namespace cargoSprint.API.Controllers
             await Db.Connection.OpenAsync();
             body.Db = Db;
             var itemQuery=new ItemsQuery(Db);
+            
 
             for(int i=0;i< body.OrdersD.Count;i++)
             {
@@ -60,15 +60,8 @@ namespace cargoSprint.API.Controllers
                 var findItemID=itemQuery.FindOneAsync(itemId);
                
                 if(findItemID.Result == null)
-                {
-                     var resp = new HttpResponseMessage(System.Net.HttpStatusCode.NotFound)
-        {
-            Content = new StringContent(string.Format("No item with ID = {0}", findItemID)),
-            ReasonPhrase = "Itemsss ID Not Found"
-        };
-        throw new HttpResponseException(resp.ReasonPhrase);
-         
-                }
+                        FoundExceptions.NotFoundException(itemId);
+                 
             }
             
 
@@ -88,15 +81,19 @@ namespace cargoSprint.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] Orders body)
         {
-              await Db.Connection.OpenAsync();
-            var query = new OrdersQuery(Db);
-            var result = await query.FindOneAsync(id);
+            await Db.Connection.OpenAsync();
+            body.Id = id;
+            body.Db = Db;
+            var orderQuery = new OrdersQuery(Db);
+            var result = await orderQuery.FindOneAsync(id);
+            
             if (result is null)
                 return new NotFoundResult();
-
+          
             await result[0].UpdateAsync(body,result[0].OrdersD);
+            await body.UpdateOrderAsync();
 
-               var order = await query.FindOneAsync(id);
+               var order = await orderQuery.FindOneAsync(id);
             if (order[0] is null)
                 return new NotFoundResult();
 
